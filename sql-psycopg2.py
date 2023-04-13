@@ -5,7 +5,7 @@ import psycopg2
 connection = psycopg2.connect(database="chinook")
 
 # build a cursor object of the database
-a = connection.cursor()
+cursor = connection.cursor()
 
 # Query 1 - select all records from the "Artist" table
 # cursor.execute('SELECT * FROM "Artist"')
@@ -14,7 +14,7 @@ a = connection.cursor()
 # cursor.execute('SELECT "Name" FROM "Artist"')
 
 # Query 3 - select only "Queen" from the "Artist" table
-a.execute('SELECT * FROM "Artist" WHERE "Name" = %s', ["Queen"])
+cursor.execute('SELECT * FROM "Artist" WHERE "Name" = %s', ["Queen"])
 
 # Query 4 - select only by "ArtistId" #51 from the "Artist" table
 # cursor.execute('SELECT * FROM "Artist" WHERE "ArtistId" = %s', [51])
@@ -26,7 +26,7 @@ a.execute('SELECT * FROM "Artist" WHERE "Name" = %s', ["Queen"])
 # cursor.execute('SELECT * FROM "Track" WHERE "Composer" = %s', ["Queen"])
 
 # fetch the results (multiple)
-results = a.fetchall()
+results = cursor.fetchall()
 
 # fetch the result (single)
 # results = cursor.fetchone()
